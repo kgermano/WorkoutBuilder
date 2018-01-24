@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+<h1 th:text="${title}"></h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<p th:unless="${workouts} and ${workouts.size()}">You have no workouts to display</p>
+
+<h2>Create New Workout</h2>
+<form method="post">
+    <select name="workoutName">
+        <option>upper body</option>
+        <option>lower body</option>
+        <option>core</option>
+        <option>full body</option>
+    </select>
+
+    <input type="submit" value="Add Workout" />
+</form>
+
+</body>
+</html>

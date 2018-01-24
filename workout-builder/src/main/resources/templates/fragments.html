@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymleaf.org/">
+<head th:fragment="head">
+    <meta charset="UTF-8"/>
+    <title th:text="${title}">Workout Builder</title>
+
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+    <nav th:fragment="navigation">
+        <a href="/workout">Workout Home</a> |
+        <a href="/workout/add"> Add Workout</a>
+    </nav>
+</body>
+</html>
