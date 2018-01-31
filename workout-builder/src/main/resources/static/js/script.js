@@ -1,35 +1,34 @@
 
 $(document).ready(function(){
-$("#search").click(function(){
+    $("#submit").click(function(){
+        doSearch();
+});});
 
-doSearch()
 
-})})
 function doSearch(){
-var workout = $('#exercises :selected').val()
-
+    var workout = $('#exercises :selected').val();
+    console.log(workout);
   $.ajax({
+
+    headers: {
+          Accept : "text/html",
+
+          },
 
     url: "https://wger.de/api/v2/exercise/?language=2&status=2&muscles=" + workout,
 
     type: 'GET',
 
-    data: {
-            format: 'json'
-          },
+    contentType: "application/json",
 
+    success: function(result) {
 
-      contentType: "application/json",
+        console.log(result);
+        $("#results").html(result);
 
-      dataType: "json",
-      data: {workout : "workout"},
-
-      success: function(result) {
-
-      console.log('Success', result);
       },
 
-      error: function(e) {
+    error: function(e) {
        alert("something went wrong" + e);
       },
 
@@ -39,6 +38,3 @@ var workout = $('#exercises :selected').val()
 
 }
 
-function displayResults(result) {
- var showDiv = document.getElementById("resultsDiv");
-}
