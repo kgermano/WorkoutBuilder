@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+<h1 th:text="${title}"></h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<form method="post" style="max-width:600px;" th:object="${form}" action="/routine/add-exercise">
+    <div class="form-group">
+        <label th:for="workoutId">Cheese</label>
+        <select name="workoutId">
+            <option th:each="workout : *{workouts}"
+                    th:text="${workout.name}"
+                    th:value="${workout.id}"></option>
+        </select>
+    </div>
+    <input type="hidden" name="routineId" th:value="*{routine.id}" />
+    <input type="submit" value="Add New Exercise" />
+</form>
+
+
+</body>
+</html>

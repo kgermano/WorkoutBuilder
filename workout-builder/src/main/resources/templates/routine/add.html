@@ -6,24 +6,13 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
-<p th:unless="${workouts} and ${workouts.size()}">You have no workouts to display</p>
 
-
-<h2>Create New Exercise</h2>
-<form method="post" th:object="${workout}">
-
+<form method="post" style="max-width:600px;" th:object="${routine}">
     <div class="form-group">
         <label th:for="name">Name</label>
         <input class="form-control" th:field="*{name}" />
         <span th:errors="*{name}" class="error"></span>
     </div>
-
-    <div class="form-group">
-        <label th:for="description">Description</label>
-        <input class="form-control" th:field="*{description}" />
-        <span th:errors="*{description}" class="error"></span>
-    </div>
-
     <div class="form-group">
         <label th:for="type">Type</label>
         <select name="categoryId">
@@ -33,8 +22,7 @@
         </select>
     </div>
 
-    <input type="submit" value="Add Exercise" />
-
+    <input type="submit" value="Create Workout Routine" />
 </form>
 
 </body>

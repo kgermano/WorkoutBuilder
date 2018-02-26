@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+<h1 th:text="${title}"></h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+
+
+<ul>
+    <li th:each="category : ${categories}" th:text="${category.name}"></li>
+
+</ul>
+</body>
+</html>

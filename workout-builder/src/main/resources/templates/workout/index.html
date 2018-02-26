@@ -1,15 +1,31 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head"></head>
-<body>
-    <h1 th:text="${title}"></h1>
+<html lang="en" xmlns:th="http://thymleaf.org/">
+<head th:replace="fragments :: head"> </head>
+
+<body class="container">
+
+<h1 th:text="${title}">Default Title</h1>
 
 <nav th:replace="fragments :: navigation"></nav>
 
-<ul>
-    <li th:each="workout : ${workouts}" th:text="${workout}"></li>
-</ul>
+<p th:unless="${workouts} and ${workouts.size()}">You have no workouts :(</p>
+
+
+<table class="table">
+
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Category</th>
+    </tr>
+
+    <tr th:each="workout : ${workouts}">
+        <td th:text="${workout.name}"></td>
+        <td th:text="${workout.description}"></td>
+        <td th:text="${workout.category.name}"></td>
+    </tr>
+
+</table>
+
 </body>
-
-
 </html>

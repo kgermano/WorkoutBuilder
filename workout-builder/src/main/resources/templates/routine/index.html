@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+<h1 th:text="${title}"></h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<p th:unless="${routine} and ${routine.size()}">You currently have no workouts to view.</p>
+
+<ul>
+    <li th:each="routine : ${routines}">
+        <a th:href=" '/routine/view/' + ${routine.id}" th:text="${routine.name}"></a>
+    </li>
+</ul>
+
+
+</body>
+</html>

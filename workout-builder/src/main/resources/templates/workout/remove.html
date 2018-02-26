@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymleaf.org/">
+<head th:replace="fragments :: head" />
+<body class="container">
+
+<h1 th:text="${title}">Default Title</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<form method="post">
+
+    <div th:each="workout : ${workouts}" class="checkbox">
+        <input type="checkbox" name="workoutIds" th:value="${workout.id}" th:id="${workout.id}"/>
+        <label th:for="${workout.id}" th:text="${workout.name}"></label>
+        <br />
+    </div>
+
+    <input type="submit" value="Remove Workout" />
+</form>
+
+</body>
+</html>
