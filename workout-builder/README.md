@@ -14,7 +14,7 @@ It then allows the user to save their workout so they can refer back to it at an
 <ul>
     <li>User Signup and Login </li>
     <li>CRUD access to user's workouts</li>
-    <li>API integration for new and pertinant articles on home page</li>
+    <li>API integration for new and pertinent articles on home page</li>
     <li>SMS integration to alert new workout</li>
     
 </ul>
