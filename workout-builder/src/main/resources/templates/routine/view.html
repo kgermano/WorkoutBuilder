@@ -6,18 +6,6 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
-<form method="post" style="max-width:600px;" th:object="${routine}">
-    <div class="form-group">
-        <label th:for="type">Type</label>
-        <select name="categoryId">
-            <option th:each="category : ${categories}"
-                    th:text="${category.name}"
-                    th:value="${category.id}"></option>
-        </select>
-    </div>
-
-    <input type="submit" value="Create Workout Routine" />
-</form>
 
 <ul>
     <li th:each="workout : ${routine.workouts}" th:text="${workout.name}"></li>

@@ -6,7 +6,7 @@ import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
-public class Routine {
+public class Routine{
 
     @Id
     @GeneratedValue
@@ -16,24 +16,50 @@ public class Routine {
     @Size(min=3, max=25)
     private String name;
 
+    @ManyToOne
+    private User user;
 
     @ManyToOne
     private Category category;
+
 
     @ManyToMany
     private List<Workout> workouts;
 
     public Routine() {}
 
-    public Routine(String name) {
+    public Routine(String name, List<Workout> workouts, Category category) {
         this.name = name;
+        this.workouts =  workouts;
+        this.category = category;
+
     }
 
     public void addItem(Workout item) {workouts.add(item);
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public List<Workout> getWorkouts() {
         return workouts;
+    }
+
+    public void setWorkouts(List<Workout> workouts) {
+        this.workouts = workouts;
     }
 
     public int getId() {

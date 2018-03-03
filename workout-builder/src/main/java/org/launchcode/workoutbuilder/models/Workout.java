@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Random;
 
 @Entity
-public class Workout {
+public class Workout{
 
     @Id
     @GeneratedValue
@@ -37,6 +37,18 @@ public class Workout {
     public Workout() {
     }
 
+   /* public List<Workout> getAllWorkouts() {
+        List<Workout> newWorkoutList = new ArrayList<Workout>();
+        int nWorkouts = 1;
+        Random random = new Random();
+
+        String query = "SELECT * FROM workout WHERE";
+        for (int x = 0; x <nWorkouts; x++){
+            query += "id=" + random.nextInt(6);
+        }
+        return newWorkoutList;
+    }
+*/
     public int getId() {
         return id;
     }

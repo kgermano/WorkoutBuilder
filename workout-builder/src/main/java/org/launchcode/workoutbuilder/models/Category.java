@@ -25,7 +25,7 @@ import java.util.List;
 
         @OneToMany
         @JoinColumn(name = "category_id")
-        private List<Routine> routines;
+        private List<Routine> routines = new ArrayList<>();
 
         @OneToMany
         @JoinColumn(name = "category_id")

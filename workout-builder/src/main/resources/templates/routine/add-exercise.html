@@ -4,11 +4,12 @@
 <body>
 <h1 th:text="${title}"></h1>
 
+
 <nav th:replace="fragments :: navigation"></nav>
 
 <form method="post" style="max-width:600px;" th:object="${form}" action="/routine/add-exercise">
     <div class="form-group">
-        <label th:for="workoutId">Cheese</label>
+        <label th:for="workoutId">Workout</label>
         <select name="workoutId">
             <option th:each="workout : *{workouts}"
                     th:text="${workout.name}"

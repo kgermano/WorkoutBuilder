@@ -2,67 +2,69 @@ package org.launchcode.workoutbuilder.models;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.servlet.http.HttpSession;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-public class User {
+import java.util.ArrayList;
+import java.util.List;
 
-    @Id
-    @GeneratedValue
-    private int id;
+@Entity
+public class User extends AbstractEntity {
+
+  /* @Id
+   @GeneratedValue
+   private int id;*/
 
     @NotNull
     @NotEmpty
+    @Pattern(regexp = "[a-zA-Z][a-zA-Z]{4,20}", message = "Invalid username")
     private String userName;
 
-
     @NotNull
-    @NotEmpty
-    private String password;
-    private String matchingPassword;
+    private String pwHash;
+    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    private List<Routine> routines = new ArrayList<>();
+
+    private String hashPassword(String password) {
+        return encoder.encode(password);
+    }
 
     public User() {}
 
     public User(String userName, String password){
 
         this.userName = userName;
-        this.password = password;
+        this.pwHash = hashPassword(password);
 
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
+ /*public int getId() {
+      return id;
+  }
+
+   public void setId(int id) {
         this.id = id;
-    }
+    }*/
 
-    @Column(unique=true)
+
     public String getUserName() {
         return userName;
     }
 
-    public void setUserName(String usertName) {
+    public void setUserName(String userName) {
         this.userName = userName;
     }
 
-    public String getPassword() {
-        return password;
-    }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getMatchingPassword() {
-        return matchingPassword;
-    }
-
-    public void setMatchingPassword(String matchingPassword) {
-        this.matchingPassword = matchingPassword;
+    public boolean isMatchingPassword(String password) {
+        return encoder.matches(password, pwHash);
     }
 }
