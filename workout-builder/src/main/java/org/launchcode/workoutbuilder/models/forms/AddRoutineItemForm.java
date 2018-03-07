@@ -1,19 +1,15 @@
 package org.launchcode.workoutbuilder.models.forms;
 
-import org.launchcode.workoutbuilder.models.Category;
 import org.launchcode.workoutbuilder.models.Routine;
-import org.launchcode.workoutbuilder.models.User;
 import org.launchcode.workoutbuilder.models.Workout;
 
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 public class AddRoutineItemForm {
 
     private Routine routine;
     private Iterable<Workout> workouts;
+
 
 
     @NotNull

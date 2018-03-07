@@ -3,6 +3,7 @@ package org.launchcode.workoutbuilder.models;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -37,6 +38,8 @@ public class Routine{
 
     public void addItem(Workout item) {workouts.add(item);
     }
+
+    public void addItemList(List<Workout> routineItemList) {new ArrayList<>();}
 
     public Category getCategory() {
         return category;
