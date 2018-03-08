@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body>
-<h1 th:text="${title}"></h1>
+<body class="container">
+
 
 
 <nav th:replace="fragments :: navigation"></nav>
 
+<div class="jumbotron text-center">
+<h1 th:text="${title}"></h1>
+</div>
 
 <form method="post" style="max-width:600px;" th:object="${form}" action="/routine/add-exercise">
 <div class="form-group">
@@ -19,7 +22,7 @@
         </select>
     </div>
     <input type="hidden" name="routineId" th:value="*{routine.id}" />
-    <input type="submit" value="Add New Exercise" />
+    <input type="submit"  class="btn btn-info" value="Add New Exercise" />
 </form>
 
 

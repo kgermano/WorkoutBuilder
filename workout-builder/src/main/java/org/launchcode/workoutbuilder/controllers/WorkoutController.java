@@ -34,7 +34,7 @@ public class WorkoutController {
     public String index(Model model) {
 
         model.addAttribute("workouts", workoutDao.findAll());
-        model.addAttribute("title", "Workouts");
+        model.addAttribute("title", "All Exercises");
 
         return "workout/index";
     }
@@ -71,7 +71,7 @@ public class WorkoutController {
     @RequestMapping(value = "remove", method = RequestMethod.GET)
     public String displayRemoveWorkoutForm(Model model) {
         model.addAttribute("workouts", workoutDao.findAll());
-        model.addAttribute("title", "Remove Cheese");
+        model.addAttribute("title", "Remove Exercise");
         return "workout/remove";
     }
 
@@ -80,6 +80,6 @@ public class WorkoutController {
         for (int workoutId : workoutIds) {
             workoutDao.delete(workoutId);
         }
-        return "redirect";
+        return "redirect:";
     }
 }

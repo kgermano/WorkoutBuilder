@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body>
-<h1 th:text="${title}"></h1>
+<body class="container">
+
 
 <nav th:replace="fragments :: navigation"></nav>
 
+<div class="jumbotron text-center">
+<h1 th:text="${title}"></h1>
+</div>
 
-<ul>
-    <li th:each="workout : ${routine.workouts}" th:text="${workout.name}"></li>
+<ul class="list-group">
+    <li class="list-group-item" th:each="workout : ${routine.workouts}" th:text="${workout.name}"></li>
 </ul>
 
 <p th:unless="${routine.workouts.size()}">You currently have no exercise to view in your workout.</p>
 
-<p><a th:href=" '/routine/add-exercise/' +${routineId}">Add Exercise</a></p>
-<p><a th:href=" '/routine/random-routine/' +${routineId}">Add Random Routine</a></p>
+<p><a th:href=" '/routine/add-exercise/' +${routineId}" class="btn btn-info" role="button">Add Exercise</a></p>
+<!--p><a th:href=" '/routine/random-routine/' +${routineId}" class="btn btn-info" role="button">Add Random Routine</a></p-->
 
 </body>
 </html>

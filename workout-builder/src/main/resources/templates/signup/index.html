@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body>
-<h1 th:text="${title}"></h1>
+<body class="container">
+
 
 <nav th:replace="fragments :: navigation"></nav>
 
-<h1>Welcome, <span th:text="${user.userName}"></span></h1>
+<div class="jumbotron text-center">
+<h1 th:text="${title}"></h1>
 
+<h1>Welcome, <span th:text="${user.userName}"></span></h1>
+</div>
 <h3>Your Workouts:</h3>
 
 <ul>
@@ -15,6 +18,8 @@
         <a th:href=" '/routine/view/' + ${routine.id}" th:text="${routine.name}"></a>
     </li>
 </ul>
+
+<a href="/routine/add">Create a New Workout!</a>
 
 </body>
 </html>

@@ -4,17 +4,25 @@
     <meta charset="UTF-8"/>
     <title th:text="${title}">Workout Builder</title>
 
-    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+    <!--link rel="stylesheet" th:href="@{/css/styles.css}" /-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <nav th:fragment="navigation">
-        <a href="/routine">Your Workout Routines</a> |
-        <a href="/workout/add"> Add Exercise to Workout</a> |
-        <a href="/workout/remove">Remove Workout</a> |
-        <a href="/workout"> All Exercises</a> |
-        <a href="/logout">Logout</a>
+    <nav class="navbar navbar-default" th:fragment="navigation">
+        <div class="container-fluid">
+
+
+        <a href="/routine" class="btn btn-basic" role="button">Home</a> |
+        <a href="/routine/add" class=" btn btn-basic" role="button">Create New Workout</a> |
+        <a href="/workout/add" class="btn btn-basic" role="button"> Add Exercise to Database</a> |
+        <a href="/workout/remove" class="btn btn-basic" role="button">Remove Exercise</a> |
+        <a href="/workout" class="btn btn-basic" role="button"> All Exercises</a> |
+        <a href="/logout" class="btn btn-basic" role="button">Logout</a>
+
+
+        </div>
     </nav>
+
 </body>
 </html>

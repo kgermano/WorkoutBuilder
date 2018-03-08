@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body>
-<h1 th:text="${title}"></h1>
+<body class="container">
+
 
 <nav th:replace="fragments :: navigation"></nav>
 
-<p th:unless="${workouts} and ${workouts.size()}">You have no workouts to display</p>
+<div class="jumbotron text-center">
+<h1 th:text="${title}"></h1>
+</div>
+
+<!--p th:unless="${workouts} and ${workouts.size()}">You have no workouts to display</p-->
 
 
 <h2>Create New Exercise</h2>
@@ -33,7 +37,7 @@
         </select>
     </div>
 
-    <input type="submit" value="Add Exercise" />
+    <input type="submit" class="btn btn-info" value="Add Exercise" />
 
 </form>
 

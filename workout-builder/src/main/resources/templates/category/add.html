@@ -2,10 +2,11 @@
 <html lang="en" xmlns:th="http://thymleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body>
-<h1 th:text="${title}"></h1>
+
 
 <nav th:replace="fragments :: navigation"></nav>
 
+<h1 th:text="${title}"></h1>
 
 <form method="post" style="max-width:600px;" th:object="${category}">
     <div class="form-group">

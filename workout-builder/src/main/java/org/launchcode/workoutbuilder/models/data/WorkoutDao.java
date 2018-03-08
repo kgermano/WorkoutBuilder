@@ -15,7 +15,7 @@ import java.util.List;
 @Repository
 @Transactional
 public interface WorkoutDao extends CrudRepository<Workout, Integer> {
-   // List<Workout> findAllByName(String name);
+   List<Workout> findAll();
 
    // List<Workout> findByCategoryId(Integer category_id);
 

@@ -4,9 +4,14 @@
 
 <body class="container">
 
-<h1 th:text="${title}">Default Title</h1>
+
 
 <nav th:replace="fragments :: navigation"></nav>
+
+
+<div class="jumbotron text-center">
+<h1 th:text="${title}">Default Title</h1>
+</div>
 
 <p th:unless="${workouts} and ${workouts.size()}">You have no workouts :(</p>
 

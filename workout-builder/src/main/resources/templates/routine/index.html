@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body>
-<h1 th:text="${title}"></h1>
-<h3><span th:text="${user.userName}" /></h3>
+<body class="container">
+
 
 <nav th:replace="fragments :: navigation"></nav>
 
-
-
-<ul>
-    <li th:each="routine : ${routines}">
+<div class="jumbotron text-center">
+<h1 th:text="${title}"></h1>
+<h3><span th:text="${user.userName}" /></h3>
+</div>
+<ul class="list-group">
+    <li class="list-group-item" th:each="routine : ${routines}">
         <a th:href=" '/routine/view/' + ${routine.id}" th:text="${routine.name}"></a>
     </li>
 </ul>
 
 <!--p th:unless="${routine} and ${routine.size()}">You currently have no workouts to view.</p-->
 
-<a href="/routine/add">Create a new Workout!</a>
+<a href="/routine/add" class="btn btn-info" role="button">Create a new Workout!</a>
 
 
 </body>

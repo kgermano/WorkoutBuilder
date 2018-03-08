@@ -5,6 +5,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Entity
 public class Routine{
@@ -37,6 +38,10 @@ public class Routine{
     }
 
     public void addItem(Workout item) {workouts.add(item);
+    }
+    public static Workout getRandomList(List<Workout> workouts) {
+        int rand = ThreadLocalRandom.current().nextInt(0, workouts.size());
+        return workouts.get(rand);
     }
 
     public void addItemList(List<Workout> routineItemList) {new ArrayList<>();}

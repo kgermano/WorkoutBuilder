@@ -25,6 +25,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Stream;
 
 import static java.lang.Math.random;
@@ -68,7 +69,7 @@ public class RoutineController extends AbstractController {
 
 ///////Start new Routine////////////
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String add(Model model, @ModelAttribute @Valid Routine routine, Errors errors, User aUser, @RequestParam int categoryId) {
+    public String add(Model model, @ModelAttribute @Valid Routine routine, Errors errors, User aUser/*@RequestParam int categoryId*/) {
 
 
         if (errors.hasErrors()) {
@@ -78,8 +79,8 @@ public class RoutineController extends AbstractController {
 
         aUser.getUid();
         routine.setUser(aUser);
-        Category cat = categoryDao.findOne(categoryId);
-        routine.setCategory(cat);
+        //Category cat = categoryDao.findOne(categoryId);
+        //routine.setCategory(cat);
         routineDao.save(routine);
 
 
@@ -103,7 +104,7 @@ public class RoutineController extends AbstractController {
         Routine routine = routineDao.findOne(routineId);
         AddRoutineItemForm form = new AddRoutineItemForm(workoutDao.findAll(), routine);
 
-        model.addAttribute("title", "Add exercise to workout: " + routine.getName());
+        model.addAttribute("title", "Add exercise to " + routine.getName());
         model.addAttribute("form", form);
 
 
@@ -131,25 +132,32 @@ public class RoutineController extends AbstractController {
     public String addRoutineItemList(Model model, @PathVariable int routineId) {
 
         Routine routine = routineDao.findOne(routineId);
-        AddRoutineItemForm form = new AddRoutineItemForm(workoutDao.findAll(), routine);
+        //AddRoutineItemForm form = new AddRoutineItemForm(workoutDao.findAll(), routine);
 
-        model.addAttribute("title", "Add exercise to workout: " + routine.getName());
-        model.addAttribute("form", form);
+        model.addAttribute("title", "Add exercise to " + routine.getName());
+        model.addAttribute("workouts", workoutDao.findAll());
+        model.addAttribute("routines", routineDao.findOne(routineId));
 
 
         return "routine/random-routine";
     }
+
+    private static Workout getRandomList(List<Workout> workouts) {
+        int rand = ThreadLocalRandom.current().nextInt(0, workouts.size());
+        return workouts.get(rand);
+    }
 ///////get rid of form, pass list of dao. create random numbers. create empty list, compare exercise list with empty list.//////
-    @RequestMapping(value = "random-routine", method = RequestMethod.POST)
-    public String processAddRoutineItemList(Model model, @ModelAttribute @Valid AddRoutineItemForm form, Errors errors, List<Workout> workouts,
-                          @RequestParam int workoutIds[]) {
+    @RequestMapping(value = "random-routine/{routineId}", method = RequestMethod.POST)
+    public String processAddRoutineItemList(Model model, @PathVariable int routineId, Errors errors/*AddRoutineItemForm form*/
+                          ) {
 
         if (errors.hasErrors()) {
-            model.addAttribute("form", form);
-            return "routine/random-routine";
+            model.addAttribute("title", "Random Routine:");
+            return "routine/random-routine/{routineId}";
         }
-
-        int[] routineList;
+        List<Workout> workouts = workoutDao.findAll();
+       // Routine randomList = getRandomList(workouts);
+       /* int[] routineList;
         routineList = new int[6];
         List<Workout> routineItemList = new ArrayList<>();
         Random random = new Random();
@@ -157,17 +165,11 @@ public class RoutineController extends AbstractController {
         for (int i = 0; i < randomNum; i++) {
 
             routineList[i] = random.nextInt();
-            for (int workoutId : workoutIds) {
-                if (routineList[i] == workoutId) {
-                    routineItemList.add(workoutDao.findOne(workoutId));
 
-                }
+        }*/
+        Routine theRoutine = routineDao.findOne(routineId);
 
-            }
-        }
-        Routine theRoutine = routineDao.findOne(form.getRoutineId());
-
-        theRoutine.addItemList(routineItemList);
+        theRoutine.getRandomList(workouts);
 
 
 
