@@ -11,15 +11,21 @@
 
 <h1>Welcome, <span th:text="${user.userName}"></span></h1>
 </div>
-<h3>Your Workouts:</h3>
 
-<ul>
-    <li th:each="routine : ${routines}">
+
+
+
+<h3 class="text-center">Your Workouts</h3>
+
+<ul class="list-group">
+    <li class="list-group-item" th:each="routine : ${routines}">
         <a th:href=" '/routine/view/' + ${routine.id}" th:text="${routine.name}"></a>
     </li>
 </ul>
+<br />
+<a href="/routine/add" class="btn btn-info" role="button">Build a New Workout!</a>
 
-<a href="/routine/add">Create a New Workout!</a>
+
 
 </body>
 </html>

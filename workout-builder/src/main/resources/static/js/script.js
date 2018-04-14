@@ -1,17 +1,18 @@
 
+
 $(document).ready(function(){
-    $("#submit").click(function(){
+    $("#btn").click(function(){
         doSearch();
 });});
 
 
 function doSearch(){
-    var workout = $('#exercises :selected').val();
+    var workout = $('#description :selected').val();
     console.log(workout);
   $.ajax({
 
     headers: {
-          Authorization: "Token aab0e79768a9c56e77f299314621f66d847987e1",
+          Authorization: "Token qfcoeixhdrrkmyxu",
           Accept : "application/json",
 
           },
@@ -28,10 +29,10 @@ function doSearch(){
                                  "read_only": false,
                                  "label": "Name",
                                  "max_length": 200
-                                                                          }, */
+                                                                          },
+*/
 
-
-    url: "https://wger.de/api/v2/exercise/?language=2&status=2&muscles=" + workout,
+    url: "https://healthfinder.gov/Search.json?api_key=qfcoeixhdrrkmyxu&CategoryID=17",
 
     type: 'GET',
 
